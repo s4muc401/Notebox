@@ -84,6 +84,7 @@ function newTask() {
     else {
         boardAddTask.style.display = "none";
         boardTasks.style.display = "block";
+        btAdd.style.display = "block";
 
         let values = JSON.parse(localStorage.getItem(localStorageToDoKey) || "[]");
         let heightBox = document.getElementById("input-height-box");
