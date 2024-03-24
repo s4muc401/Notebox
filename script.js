@@ -1,4 +1,5 @@
 const localStorageToDoKey = "todo-bank";
+const localStorageLineKey = "line-bank";
 
 let passwordStorageKey = localStorage.wor;
 const password = (localStorage.wor) ? passwordStorageKey : "";
@@ -143,5 +144,55 @@ function openLine() {
     boardAddTask.style.display = "none";
     boardTasks.style.display = "none";
     boardSettings.style.display = "none";
+    showLineValues();
+}
+
+function newBlock() {
+    let titleBlock = document.getElementById("input-title-block");
+
+    if (!titleBlock.value) {
+        alert("Digite algo...")
+    }
+    else if (validadeIfExistNewBlock()) {
+        alert("Este titulo já está em uso");
+    }
+    else { 
+        boardAddLine.style.display = "none";
+        boardLine.style.display = "block";
+        btAdd.style.display = "block";
+
+        let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
+        let colorBlock = document.getElementById("input-color-block");
+        values.push({
+            title: titleBlock.value,
+            color: colorBlock.value
+        });
+        localStorage.setItem(localStorageLineKey, JSON.stringify(values));
+        showLineValues();
+        titleBlock.value = ""; 
+    }
+}
+
+function validadeIfExistNewBlock() {
+    let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
+    let titleBlock = document.getElementById("input-title-block");
+    let exists = values.find(x => x.title == titleBlock.value);
+    return !exists ? false : true;
+}
+
+function showLineValues() {
+    let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
+    boardLine.innerHTML = "";
+    for (let i = 0; i < values.length; i++) {
+        boardLine.innerHTML += `<textarea id='boxMeta' style='color:${values[i]['color']}'>${values[i]['title']}</textarea> <button onclick='removeLineItem("${values[i]['title']}")'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" /></svg>`;
+    }
+}
+
+function removeLineItem(data) {
+    let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
+    let index = values.findIndex(x => x.title == data);
+    values.splice(index, 1);
+    localStorage.setItem(localStorageLineKey, JSON.stringify(values));
+    showLineValues();
 }
 
