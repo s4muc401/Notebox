@@ -92,7 +92,7 @@ header nav button:active {
 
 main {
     margin: auto;
-    margin-top: 51px;
+    margin-top: 54px;
     width: 90%;
 }
 
@@ -111,6 +111,7 @@ main {
     width: 77%;
     height: 50px;
     top: 5px;
+    float: left;
     padding: 3%;
     border-radius: 10px;
     border: 2px solid;
