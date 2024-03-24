@@ -14,6 +14,14 @@
     --cor-activate: #000;
 }
 
+#board-password {
+    display: block;
+}
+
+#board-settings {
+    display: none;
+}
+
 #board-password,
 #board-settings {
     width: 80%;
@@ -26,20 +34,12 @@
     background-color: var(--cor-secundaria);
 }
 
-#board-password {
-    display: block;
-}
-
-#board-settings {
-    display: none;
-}
-
 #board-password input,
 #board-settings input {
     width: 100%;
     padding: 0.2rem;
     border: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid var(--cor-activate);
     background-color: rgba(0, 0, 0, 0);
 }
 
@@ -96,18 +96,22 @@ main {
     width: 90%;
 }
 
-#board-main {
+#board-todo, #board-line {
     display: none;
-    height: 27.4rem;
+    height: 27.7rem;
     overflow-y: auto;
     scroll-behavior: smooth;
+}
+
+#board-line {
+    display: none;
 }
 
 ::-webkit-scrollbar {
     width: 0px;
 }
 
-#board-main textarea {
+#board-todo textarea {
     width: 77%;
     height: 50px;
     top: 5px;
@@ -119,7 +123,7 @@ main {
     display: inline-block;
 }
 
-#board-main button {
+#board-todo button {
     width: 22%;
     height: 50px;
     margin-left: 1%;
@@ -132,7 +136,7 @@ section button:active {
     background-color: var(--cor-secundaria);
 }
 
-#board-add {
+#board-add-task, #board-add-line {
     width: 90%;
     height: 14rem;
     position: absolute;
@@ -144,7 +148,12 @@ section button:active {
     display: none;
 }
 
-#board-add input {
+#board-add-line {
+    display: none;
+    height: 11rem;
+}
+
+#board-add-task input, #board-add-line input{
     width: 100%;
     height: 2rem;
     background-color: rgba(0, 0, 0, 0);
@@ -155,14 +164,14 @@ section button:active {
     font-size: 1.1em;
 }
 
-#board-add #input-color-box {
+#board-add-task #input-color-box, #board-add-line #input-color-block {
     height: 80px;
     border-radius: 10px;
     border: none;
     padding: 0;
 }
 
-#board-add button {
+#board-add-task button, #board-add-line button {
     width: 100%;
     height: 30px;
     color: var(--cor-font-principal);
@@ -172,12 +181,12 @@ section button:active {
     border-radius: 5px;
 }
 
-#board-add button:active {
+#board-add-task button:active , #board-add-line button:active{
     background-color: var(--cor-activate);
     color: var(--cor-activate);
 }
 
-#btn-new-task {
+#btn-add {
     position: fixed;
     right: 3%;
     bottom: 5rem;
@@ -190,7 +199,7 @@ section button:active {
     display: none;
 }
 
-#btn-new-task:active {
+#btn-add:active {
     background-color: var(--cor-activate);
 }
 
