@@ -168,7 +168,7 @@ section button:active {
 
 #board-add-line {
     display: none;
-    height: 11rem;
+    height: 6rem;
 }
 
 #board-add-task input, #board-add-line input{

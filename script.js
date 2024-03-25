@@ -165,10 +165,10 @@ function newBlock() {
         btAdd.style.display = "block";
 
         let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
-        let colorMeta = document.getElementById("input-color-meta");
         values.push({
             title: input.value,
-            color: colorMeta.value
+            color: '#d3d3d3',
+            fontColor: '#000'
         });
         localStorage.setItem(localStorageLineKey, JSON.stringify(values));
         showLineValues();
@@ -187,14 +187,20 @@ function showLineValues() {
     let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
     boardLine.innerHTML = "";
     for (let i = 0; i < values.length; i++) {
-        boardLine.innerHTML += `<textarea id='boxMeta' onclick='metaCompleted("${values[i]['title']}")' style='background-color:${values[i]['color']}'>${values[i]['title']}</textarea> <button onclick='removeLineItem("${values[i]['title']}")'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" /></svg>`;
+        boardLine.innerHTML += `<textarea id='boxMeta' onclick='metaCompleted("${values[i]['title']}")' style='background-color: ${values[i]['color']}; color: ${values[i]['fontColor']}'>${values[i]['title']}</textarea> <button onclick='removeLineItem("${values[i]['title']}")'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" /></svg>`;
     }
 }
 
 function metaCompleted(data) {
     let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
     let index = values.findIndex(x => x.title == data);
-    values[index]['color'] = '#d3d3d3';
+    if (values[index]['color'] == '#d3d3d3') {
+        values[index]['color'] = 'royalblue';
+        values[index]['fontColor'] = '#fff';
+    } else {
+        values[index]['color'] = '#d3d3d3';
+        values[index]['fontColor'] = '#000';
+    }
     localStorage.setItem(localStorageLineKey, JSON.stringify(values));
     showLineValues();
 }
