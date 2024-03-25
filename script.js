@@ -1,8 +1,8 @@
 const localStorageToDoKey = "todo-bank";
 const localStorageLineKey = "line-bank";
 
-let passwordStorageKey = localStorage.wor;
-const password = (localStorage.wor) ? passwordStorageKey : "";
+let passwordStorageKey = localStorage.password;
+const password = (localStorage.password) ? passwordStorageKey : "";
 
 const boardPassword = document.getElementById("board-password");
 const boardSettings = document.getElementById("board-settings");
@@ -39,7 +39,7 @@ let inputNewPassword = document.getElementById("input-set-password");
 const openSettings = () => {
     boardTasks.style.display = "none";
 
-    const existsPassword = (localStorage.wor) ? "block" : "none";
+    const existsPassword = (localStorage.password) ? "block" : "none";
     inputOldPassword.style.display = existsPassword;
     console.log(inputOldPassword.style.display)
     if (boardPassword.style.display != "none") { // BoardPassword in display block
@@ -53,11 +53,13 @@ const openSettings = () => {
 const setPassword = () => {
     if (inputOldPassword.value == password) {
         console.log("New Password: " + inputNewPassword.value)
-        localStorage.wor = inputNewPassword.value;
+        localStorage.password = inputNewPassword.value;
         inputNewPassword.value = "";
         inputOldPassword.value = "";
+        boardTasks.style.display = "block";
+        boardSettings.style.display = "none";
     } else {
-        boardSettings.innerHTML += `<p style="color:red;margin-top:3px;">Senha Incorreta</p>`;
+        boardSettings.innerHTML += `<p style="color:red;margin-top:10px;">Senha Incorreta</p>`;
     }
 }
 
@@ -149,12 +151,12 @@ function openLine() {
 }
 
 function newBlock() {
-    let titleBlock = document.getElementById("input-title-block");
+    let input = document.getElementById("input-name-meta");
 
-    if (!titleBlock.value) {
+    if (!input.value) {
         alert("Digite algo...")
     }
-    else if (validadeIfExistNewBlock()) {
+    else if (validadeIfExistNewMeta()) {
         alert("Este titulo já está em uso");
     }
     else { 
@@ -163,21 +165,21 @@ function newBlock() {
         btAdd.style.display = "block";
 
         let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
-        let colorBlock = document.getElementById("input-color-block");
+        let colorMeta = document.getElementById("input-color-meta");
         values.push({
-            title: titleBlock.value,
-            color: colorBlock.value
+            title: input.value,
+            color: colorMeta.value
         });
         localStorage.setItem(localStorageLineKey, JSON.stringify(values));
         showLineValues();
-        titleBlock.value = ""; 
+        input.value = ""; 
     }
 }
 
-function validadeIfExistNewBlock() {
+function validadeIfExistNewMeta() {
     let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
-    let titleBlock = document.getElementById("input-title-block");
-    let exists = values.find(x => x.title == titleBlock.value);
+    let input = document.getElementById("input-name-meta");
+    let exists = values.find(x => x.title == input.value);
     return !exists ? false : true;
 }
 
@@ -185,8 +187,16 @@ function showLineValues() {
     let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
     boardLine.innerHTML = "";
     for (let i = 0; i < values.length; i++) {
-        boardLine.innerHTML += `<textarea id='boxMeta' style='color:${values[i]['color']}'>${values[i]['title']}</textarea> <button onclick='removeLineItem("${values[i]['title']}")'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" /></svg>`;
+        boardLine.innerHTML += `<textarea id='boxMeta' onclick='metaCompleted("${values[i]['title']}")' style='background-color:${values[i]['color']}'>${values[i]['title']}</textarea> <button onclick='removeLineItem("${values[i]['title']}")'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" /></svg>`;
     }
+}
+
+function metaCompleted(data) {
+    let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
+    let index = values.findIndex(x => x.title == data);
+    values[index]['color'] = '#d3d3d3';
+    localStorage.setItem(localStorageLineKey, JSON.stringify(values));
+    showLineValues();
 }
 
 function removeLineItem(data) {

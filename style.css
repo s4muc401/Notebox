@@ -182,7 +182,7 @@ section button:active {
     font-size: 1.1em;
 }
 
-#board-add-task #input-color-box, #board-add-line #input-color-block {
+#board-add-task #input-color-box, #board-add-line #input-color-meta {
     height: 80px;
     border-radius: 10px;
     border: none;
