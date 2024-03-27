@@ -131,9 +131,11 @@ function openBoardAdd() {
     if (boardTasks.style.display == "block") {
         boardAddTask.style.display = "block";
         boardTasks.style.display = "none";
+        boardLine.style.display = "none";
     } else if (boardLine.style.display == "block") {
         boardAddLine.style.display = "block";
         boardLine.style.display = "none";
+        boardTasks.style.display = "none";
     }
 }
 
