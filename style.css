@@ -7,10 +7,8 @@
     font-family: arial;
 }
 
-body { background-color: #000;}
-/* 461220 6320EE 7AFDD6*/
 :root {
-    --cor-primaria: #461220;
+    --cor-primaria: #08F;
     --cor-secundaria: lightgray;
     --cor-font-principal: #fff;
     --cor-activate: lightgray;
