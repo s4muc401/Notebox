@@ -1,0 +1,249 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    font-family: arial;
+}
+
+body { background-color: #000;}
+/* 461220 6320EE 7AFDD6*/
+:root {
+    --cor-primaria: #461220;
+    --cor-secundaria: lightgray;
+    --cor-font-principal: #fff;
+    --cor-activate: lightgray;
+}
+
+#board-password {
+    display: block;
+}
+
+#board-settings {
+    display: none;
+}
+
+#board-password,
+#board-settings {
+    width: 80%;
+    position: relative;
+    text-align: center;
+    border: 1px solid var(--cor-primaria);
+    top: 6rem;
+    left: 10%;
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+#board-password input,
+#board-settings input {
+    width: 100%;
+    padding: 0.2rem;
+    color: var(--cor-font-principal);
+    border: none;
+    border-bottom: 1px solid var(--cor-primaria);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#board-password button,
+#board-settings button {
+    display: block;
+    width: 100%;
+    position: relative;
+    color: var(--cor-font-principal);
+    background-color: var(--cor-primaria);
+    border-radius: 10px;
+    border: none;
+    top: 0.5rem;
+    padding: 0.3rem;
+}
+
+#board-password button:active,
+#board-settings button:active {
+    background-color: var(--cor-activate);
+}
+
+header {
+    padding: 2%;
+    position: fixed;
+    top: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    color: var(--cor-activate);
+    background-color: var(--cor-primaria);
+    font-size: 1.2em;
+    width: 100%;
+}
+
+header nav {
+    float: right;
+    padding: 1%;
+}
+
+header nav button {
+    top: 0;
+    text-decoration: none;
+    color: var(--cor-activate);
+    background-color: var(--cor-primaria);
+    border: none;
+}
+
+header nav button:active {
+    color: var(--cor-activate);
+}
+
+main {
+    margin: auto;
+    margin-top: 54px;
+    width: 90%;
+}
+
+#board-todo, #board-line {
+    display: none;
+    height: 27.7rem;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+#board-todo textarea {
+    width: 77%;
+    height: 8vh;
+    top: 5px;
+    float: left;
+    padding: 3%;
+    border-radius: 10px;
+    border: 2px solid;
+    background-color: var(--cor-secundaria);
+    display: inline-block;
+}
+
+#board-todo button {
+    width: 22%;
+    height: 8vh;
+    margin-left: 1%;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    border: none;
+}
+
+#board-line {
+    display: none;
+    padding: 5%;
+}
+
+#boxMeta {
+    width: 100%;
+    border: 1px solid var(--cor-activate);
+    background-color: var(--cor-primaria);
+    color: var(--cor-activate);
+    border-radius: 5px;
+    padding: 1%;
+    height: 90px;
+}
+
+#board-line button {
+    padding: 2%;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+section button:active {
+    background-color: var(--cor-secundaria);
+}
+
+#board-add-task, #board-add-line {
+    width: 90%;
+    height: 17vh;
+    position: absolute;
+    top: 5rem;
+    left: 5%;
+    border-radius: 10px;
+    border: 1px solid var(--cor-primaria);
+    padding: 3%;
+    display: none;
+}
+
+#board-add-line {
+    display: none;
+    height: 6rem;
+}
+
+#board-add-task input, #board-add-line input{
+    width: 100%;
+    height: 2rem;
+    color: var(--cor-font-principal);
+    background-color: rgba(0, 0, 0, 0);
+    padding-left: 1%;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    border: 1px solid var(--cor-primaria);
+    font-size: 1.1em;
+}
+
+#board-add-task button, #board-add-line button {
+    width: 100%;
+    height: 30px;
+    color: var(--cor-font-principal);
+    background-color: var(--cor-primaria);
+    border: none;
+    margin-top: 2px;
+    border-radius: 5px;
+}
+
+#board-add-task button:active , #board-add-line button:active{
+    background-color: var(--cor-activate);
+    color: var(--cor-activate);
+}
+
+#btn-add {
+    position: fixed;
+    right: 3%;
+    bottom: 5rem;
+    width: 15%;
+    height: 3.3rem;
+    border-radius: 10px;
+    color: var(--cor-font-principal);
+    background-color: var(--cor-primaria);
+    border: none;
+    display: none;
+}
+
+#btn-add:active {
+    background-color: var(--cor-activate);
+}
+
+#bottom-menu {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 3rem;
+    padding-top: 0.5rem;
+    background-color: var(--cor-secundaria);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    display: none;
+}
+
+#bottom-menu nav {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+#bottom-menu nav button {
+    background-color: var(--cor-secundaria);
+    border: none;
+    margin: 0px 13px;
+}
+
+#bottom-menu nav button:active {
+    color: var(--cor-primaria);
+}
