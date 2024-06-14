@@ -10,7 +10,7 @@
 :root {
     --cor-primaria: #08F;
     --cor-secundaria: lightgray;
-    --cor-font-principal: #000;
+    --cor-font-principal: #fff;
     --cor-activate: lightgray;
 }
 
@@ -177,7 +177,7 @@ section button:active {
 #board-add-task input, #board-add-line input{
     width: 100%;
     height: 2rem;
-    color: var(--cor-font-principal);
+    color: #000;
     background-color: rgba(0, 0, 0, 0);
     padding-left: 1%;
     margin-bottom: 5px;
