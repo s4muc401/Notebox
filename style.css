@@ -216,7 +216,7 @@ section button:active {
     color: var(--cor-secundaria);
     background-color: var(--cor-primaria);
     border: none;
-    margin-top: 3vh;
+    margin-top: 1vh;
     border-radius: 5px; 
 }
 
