@@ -178,8 +178,7 @@ section button:active {
     width: 90%;
     height: auto;
     position: absolute;
-    margin-bottom: 2vh;
-    top: 5rem;
+    top: 2vh;
     left: 5%;
     border-radius: 10px;
     border: 1px solid var(--cor-primaria);
@@ -217,7 +216,7 @@ section button:active {
     color: var(--cor-secundaria);
     background-color: var(--cor-primaria);
     border: none;
-    margin-top: 4vh;
+    margin-top: 3vh;
     border-radius: 5px; 
 }
 
