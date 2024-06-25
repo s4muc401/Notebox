@@ -150,6 +150,7 @@ function openLine() {
 
 function newBlock() {
     let input = document.getElementById("input-name-meta");
+    let inputContent = document.getElementById("input-content-boxmeta");
 
     if (!input.value) {
         alert("Digite algo...")
@@ -165,6 +166,7 @@ function newBlock() {
         let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
         values.push({
             title: input.value,
+            content: inputContent.value,
         });
         localStorage.setItem(localStorageLineKey, JSON.stringify(values));
         showLineValues();
@@ -182,9 +184,48 @@ function validadeIfExistNewMeta() {
 function showLineValues() {
     let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
     boardLine.innerHTML = "";
-    for (let i = 0; i < values.length; i++) {
-        boardLine.innerHTML += `<textarea id='boxMeta'>${values[i]['title']}</textarea> <button onclick='removeLineItem("${values[i]['title']}")'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" /></svg>`;
+    for (let iterator = 0; iterator < values.length; iterator++) {
+        const boxMeta = document.createElement('div');
+        boxMeta.setAttribute('id','boxMeta')
+
+        const titleBoxMeta = document.createElement('p');
+        titleBoxMeta.setAttribute('id','title-boxmeta')
+        titleBoxMeta.innerHTML = `${values[iterator]['title']}`;
+
+        const contentBoxMeta = document.createElement('div');
+        contentBoxMeta.setAttribute('id','content-boxmeta');
+        contentBoxMeta.innerHTML = `${values[iterator]['content']}`;
+
+        const buttonRemoveBoxMeta = document.createElement('button');
+        buttonRemoveBoxMeta.innerHTML = "Apagar"
+        buttonRemoveBoxMeta.addEventListener('click',function(){
+            removeLineItem(values[iterator]['title'])
+        });
+
+        boxMeta.appendChild(titleBoxMeta);
+        boxMeta.appendChild(contentBoxMeta);
+        boxMeta.appendChild(buttonRemoveBoxMeta);
+
+        contentBoxMeta.addEventListener("click",function(el){
+            let content = el.target.textContent;
+            openBoxMeta(values[iterator]['title'],content);
+            btAdd.style.display = "none";
+            removeLineItem(values[iterator]['title'])
+        });
+
+        boardLine.appendChild(boxMeta);
+
     }
+    //boardLine.innerHTML += `<div id='boxMeta'><p id="title-boxmeta">${values[i]['title']}</p><div id="content-boxmeta">${values[i]['content']}</div></div> <button onclick='removeLineItem("${values[i]['title']}")'><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" /></svg>`;
+}
+
+function openBoxMeta(title,content) {
+    boardAddLine.style.display = "block";
+    boardLine.style.display = "none";
+    let input = document.getElementById("input-name-meta");
+    let inputContent = document.getElementById("input-content-boxmeta");
+    input.value = title;
+    inputContent.value = content;
 }
 
 function removeLineItem(data) {
