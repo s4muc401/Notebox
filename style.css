@@ -111,6 +111,7 @@ main {
 #board-todo textarea {
     width: 77%;
     height: 8vh;
+    word-wrap: break-word;
     top: 5px;
     float: left;
     padding: 3%;
@@ -143,29 +144,30 @@ main {
     padding: 2%;
     height: auto;
     word-wrap: break-word;
-    overflow-y: auto;
-    scroll-behavior: smooth;
 }
 
 #title-boxmeta {
-    background-color: var(--cor-primaria);
-    color: #fff;
-    padding: 2px;
+    color: var(--cor-primaria);
     border-radius: 5px;
     font-size: 0.9rem;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
 
 #content-boxmeta {
     margin-top: 2vh;
     width: 100%;
     font-size: 0.9rem;
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
 }
 
-#board-line button {
+#boxMeta button {
     padding: 2%;
     width: 100%;
     margin-top: 5px;
-    margin-bottom: 10px;
     border-radius: 5px;
     border: none;
 }
