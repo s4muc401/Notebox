@@ -205,7 +205,7 @@ function showLineValues() {
         boxMeta.appendChild(contentBoxMeta);
         boxMeta.appendChild(buttonRemoveBoxMeta);
 
-        boxMeta.addEventListener("click",function(){
+        contentBoxMeta.addEventListener("click",function(){
             let content = contentBoxMeta.textContent;
             openBoxMeta(values[iterator]['title'],content);
             btAdd.style.display = "none";
