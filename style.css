@@ -209,7 +209,7 @@ section button:active {
     margin-bottom: 5px;
     border-radius: 10px;
     border: 1px solid var(--cor-primaria);
-    font-size: 1.1em;
+    font-size: 0.9em;
 }
 
 #board-add-task button, #board-add-line button {
