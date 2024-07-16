@@ -1,9 +1,12 @@
+// Chaves de UPload de dados na localStorage
 const localStorageToDoKey = "todo-bank";
 const localStorageLineKey = "line-bank";
 
+// Pegando senha na localStorage e checando sua existencia
 let passwordStorageKey = localStorage.password;
 const password = (localStorage.password) ? passwordStorageKey : "";
 
+// Principais elementos HTML
 const boardPassword = document.getElementById("board-password");
 const boardSettings = document.getElementById("board-settings");
 const boardAddTask = document.getElementById("board-add-task");
@@ -13,7 +16,7 @@ const boardLine = document.getElementById("board-line");
 const footerNavBar = document.querySelector("footer");
 const btAdd = document.getElementById("btn-add");
 
-// Board Password
+// Board Password - Liberação de acesso ao Sistema
 const enterPassword = () => {
     let inputPassword = document.getElementById("input-enter-password");
     let correctOrNotPassword = (inputPassword.value == password) ? true : false;
@@ -27,15 +30,16 @@ const enterPassword = () => {
     }
 }
 
-// Lock System
+// Lock System - Função de Travamento
 function lockSystem() {
     location.reload();
 }
 
 // Board Settings
-let inputOldPassword = document.getElementById("input-password");
+let inputOldPassword = document.getElementById("input-password"); // Modificando a senha de acesso ao sistema
 let inputNewPassword = document.getElementById("input-set-password");
 
+// Abrindo caixa de configurações
 const openSettings = () => {
     boardTasks.style.display = "none";
 
@@ -50,6 +54,7 @@ const openSettings = () => {
     }
 }
 
+// Função de Troca de senha de acesso
 const setPassword = () => {
     if (inputOldPassword.value == password) {
         console.log("New Password: " + inputNewPassword.value)
@@ -66,7 +71,11 @@ const setPassword = () => {
 
 
 // SYSTEM TODO
+
+// Chaves de UPload de dados na localStorage
 let values = JSON.parse(localStorage.getItem(localStorageToDoKey) || "[]");
+
+// Elementos Html do Sistema todo
 let input = document.getElementById("input-new-task");
 
 
@@ -78,6 +87,20 @@ function openToDo() {
     boardSettings.style.display = "none";
 }
 
+function openBoardAdd() {
+    btAdd.style.display = "none";
+    if (boardTasks.style.display == "block") {
+        boardAddTask.style.display = "block";
+        boardTasks.style.display = "none";
+        boardLine.style.display = "none";
+    } else if (boardLine.style.display == "block") {
+        boardAddLine.style.display = "block";
+        boardLine.style.display = "none";
+        boardTasks.style.display = "none";
+    }
+}
+
+// Criando uma nova tarefa
 function newTask() {
     if (!input.value) {
         alert("Digite algo...")
@@ -99,11 +122,13 @@ function newTask() {
     }
 }
 
+// Validando tarefa
 function validadeIfExistNewTask() {
     let exists = values.find(x => x.name == input.value);
     return !exists ? false : true;
 }
 
+// Carregando lista de tarefas
 function showValues() {
     boardTasks.innerHTML = "";
     for (let i = 0; i < values.length; i++) {
@@ -111,6 +136,7 @@ function showValues() {
     }
 }
 
+// Removendo tarefa da lista de tarefas
 function removeItem(data) {
     // A ultima função Ethel
     let index = values.findIndex(x => x.name == data);
@@ -119,23 +145,13 @@ function removeItem(data) {
     showValues();
 }
 
-function openBoardAdd() {
-    btAdd.style.display = "none";
-    if (boardTasks.style.display == "block") {
-        boardAddTask.style.display = "block";
-        boardTasks.style.display = "none";
-        boardLine.style.display = "none";
-    } else if (boardLine.style.display == "block") {
-        boardAddLine.style.display = "block";
-        boardLine.style.display = "none";
-        boardTasks.style.display = "none";
-    }
-}
-
+// Carregando lista de tarefas
 showValues();
 
-// SYSTEM LIST 
 
+// SYSTEM BLOCK
+
+// Elementos Html do sistema de blocos
 let inputTitle = document.getElementById("input-name-meta");
 let inputContent = document.getElementById("input-content-boxmeta");
 
@@ -147,10 +163,9 @@ function openLine() {
     boardTasks.style.display = "none";
     boardSettings.style.display = "none";
     showLineValues();
-    
-
 }
 
+// Criando um novo bloco 
 function newBlock() {
     if (!inputTitle.value) {
         alert("Digite algo...")
@@ -174,12 +189,14 @@ function newBlock() {
     }
 }
 
+// Validando bloco
 function validadeIfExistNewMeta() {
     let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
     let exists = values.find(x => x.title == inputTitle.value);
     return !exists ? false : true;
 }
 
+// Carregando blocos
 function showLineValues() {
     let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
     boardLine.innerHTML = "";
@@ -205,6 +222,7 @@ function showLineValues() {
         boxMeta.appendChild(contentBoxMeta);
         boxMeta.appendChild(buttonRemoveBoxMeta);
 
+        // Abrindo bloco
         contentBoxMeta.addEventListener("click",function(){
             let content = contentBoxMeta.textContent;
             openBoxMeta(values[iterator]['title'],content);
@@ -217,6 +235,7 @@ function showLineValues() {
     }
 }
 
+// Função para abertura de blocos
 function openBoxMeta(title,content) {
     boardAddLine.style.display = "block";
     boardLine.style.display = "none";
@@ -225,6 +244,7 @@ function openBoxMeta(title,content) {
     inputContent.value = content;
 }
 
+// Excluindo bloco
 function removeLineItem(data) {
     let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
     let index = values.findIndex(x => x.title == data);
