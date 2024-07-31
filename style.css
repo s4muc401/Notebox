@@ -185,8 +185,8 @@ section button:active {
     top: 10vh;
     left: 5%;
     border-radius: 10px;
-    border: 1px solid var(--cor-primaria);
-    background-color: var(--cor-primaria);
+    border: 1px solid var(--cor-secundaria);
+    background-color: var(--cor-secundaria);
     padding: 3%;
     display: none;
 }
