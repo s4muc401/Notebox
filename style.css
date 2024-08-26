@@ -49,11 +49,12 @@ header nav button:active {
 }
 
 #board-line {
-    margin-top: 5vh;
-    height: 27.7rem;
+    margin-top: 8vh;
+    height: 95vh;
     padding: 5%;
     overflow-y: auto;
     scroll-behavior: smooth;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar {
@@ -68,7 +69,7 @@ header nav button:active {
     color: #000;
     border-radius: 5px;
     padding: 2%;
-    height: auto;
+    height: 19vh;
     word-wrap: break-word;
 }
 
