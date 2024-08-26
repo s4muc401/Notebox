@@ -7,59 +7,15 @@
     font-family: arial;
 }
 
+body {
+    background-color: #000;
+}
+
 :root {
-    --cor-primaria: #06BEE1;
-    --cor-secundaria: lightgray;
-    --cor-font-principal: #000;
+    --cor-primaria: #B76D68;
+    --cor-secundaria: #1B2432;
+    --cor-font-principal: #ccc;
     --cor-activate: lightgray;
-}
-
-#board-password {
-    display: block;
-}
-
-#board-settings {
-    display: none;
-}
-
-#board-password,
-#board-settings {
-    width: 80%;
-    position: relative;
-    text-align: center;
-    border: 1px solid var(--cor-primaria);
-    top: 6rem;
-    left: 10%;
-    border-radius: 10px;
-    padding: 2rem;
-}
-
-#board-password input,
-#board-settings input {
-    width: 100%;
-    padding: 0.2rem;
-    color: var(--cor-font-principal);
-    border: none;
-    border-bottom: 1px solid var(--cor-primaria);
-    background-color: rgba(0, 0, 0, 0);
-}
-
-#board-password button,
-#board-settings button {
-    display: block;
-    width: 100%;
-    position: relative;
-    color: var(--cor-secundaria);
-    background-color: var(--cor-primaria);
-    border-radius: 10px;
-    border: none;
-    top: 0.5rem;
-    padding: 0.3rem;
-}
-
-#board-password button:active,
-#board-settings button:active {
-    background-color: var(--cor-activate);
 }
 
 header {
@@ -68,10 +24,11 @@ header {
     top: 0;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-    color: #fff;
-    background-color: var(--cor-primaria);
+    color: var(--cor-primaria);
     font-size: 1.2em;
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 header nav {
@@ -91,15 +48,10 @@ header nav button:active {
     color: var(--cor-activate);
 }
 
-main {
-    margin: auto;
-    margin-top: 54px;
-    width: 90%;
-}
-
-#board-todo, #board-line {
-    display: none;
+#board-line {
+    margin-top: 5vh;
     height: 27.7rem;
+    padding: 5%;
     overflow-y: auto;
     scroll-behavior: smooth;
 }
@@ -108,37 +60,9 @@ main {
     width: 0px;
 }
 
-#board-todo textarea {
-    width: 77%;
-    height: 8vh;
-    word-wrap: break-word;
-    top: 5px;
-    float: left;
-    padding: 3%;
-    border-radius: 10px;
-    background-color: var(--cor-primaria);
-    color: #fff;
-    border-color: var(--cor-primaria);
-    display: inline-block;
-}
-
-#board-todo button {
-    width: 22%;
-    height: 8vh;
-    margin-left: 1%;
-    margin-bottom: 5px;
-    border-radius: 10px;
-    border: none;
-}
-
-#board-line {
-    display: none;
-    padding: 5%;
-}
-
 #boxMeta {
     width: 100%;
-    border: 1px solid var(--cor-activate);
+    border: 1px solid var(--cor-font-principal);
     background-color: var(--cor-secundaria);
     margin-top: 1vh;
     color: #000;
@@ -160,6 +84,7 @@ main {
 #content-boxmeta {
     margin-top: 2vh;
     width: 100%;
+    color: var(--cor-font-principal);
     font-size: 0.9rem;
     white-space: nowrap; 
     overflow: hidden; 
@@ -172,13 +97,14 @@ main {
     margin-top: 4vh;
     border-radius: 5px;
     border: none;
+    background-color: var(--cor-primaria);
 }
 
 section button:active {
     background-color: var(--cor-secundaria);
 }
 
-#board-add-task, #board-add-line {
+#board-add-line {
     width: 90%;
     height: auto;
     position: absolute;
@@ -191,12 +117,12 @@ section button:active {
     display: none;
 }
 
-#board-add-task input, #board-add-line input{
+#board-add-line input{
     width: 100%;
     height: 2rem;
-    color: #000;
+    color: var(--cor-font-principal);
     padding: 2%;
-    background-color: #fff;
+    background-color: var(--cor-secundaria);
     border: 1px solid var(--cor-primaria);
     margin-bottom: 5px;
     border-radius: 10px;
@@ -205,17 +131,17 @@ section button:active {
 
 #input-content-boxmeta {
     width: 100%;
-    height: 53vh;
-    color: #000;
+    height: 68vh;
+    color: var(--cor-font-principal);
     padding: 2%;
-    background-color: #fff;
+    background-color: var(--cor-secundaria);
     border: 1px solid var(--cor-primaria);
     margin-bottom: 5px;
     border-radius: 10px;
     font-size: 0.9em;
 }
 
-#board-add-task button, #board-add-line button {
+#board-add-line button {
     width: 100%;
     height: 30px;
     color: #fff;
@@ -225,7 +151,7 @@ section button:active {
     border-radius: 5px; 
 }
 
-#board-add-task button:active , #board-add-line button:active{
+#board-add-line button:active{
     background-color: var(--cor-activate);
     color: var(--cor-activate);
 }
@@ -233,15 +159,14 @@ section button:active {
 
 #btn-add {
     position: fixed;
-    right: 3%;
-    bottom: 5rem;
+    right: 8%;
+    bottom: 4rem;
     width: 15%;
     height: 3.3rem;
     border-radius: 10px;
     color: #fff;
     background-color: var(--cor-primaria);
     border: none;
-    display: none;
 }
 
 #btn-add:active {

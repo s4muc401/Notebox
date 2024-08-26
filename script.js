@@ -1,74 +1,17 @@
 // Chaves de UPload de dados na localStorage
 const localStorageLineKey = "line-bank";
 
-// Pegando senha na localStorage e checando sua existencia
-let passwordStorageKey = localStorage.password;
-const password = (localStorage.password) ? passwordStorageKey : "";
-
 // Principais elementos HTML
-const boardPassword = document.getElementById("board-password");
-const boardSettings = document.getElementById("board-settings");
 const boardAddLine = document.getElementById("board-add-line");
-// teste
-const sectionNewboxMeta = document.querySelector(".section-new-boxmeta");
-const sectionNewDivision = document.querySelector(".section-new-division");
-const divisionList = document.querySelector(".division-list");
 const boardLine = document.getElementById("board-line");
 const footerNavBar = document.querySelector("footer");
 const btAdd = document.getElementById("btn-add");
 
-// Board Password - Liberação de acesso ao Sistema
-const enterPassword = () => {
-    let inputPassword = document.getElementById("input-enter-password");
-    let correctOrNotPassword = (inputPassword.value == password) ? true : false;
-    if (correctOrNotPassword) {
-        footerNavBar.style.display = "block";
-        btAdd.style.display = "block";
-        boardLine.style.display = "block";
-        boardPassword.style.display = "none";
-        showLineValues();
-    } else {
-        boardPassword.innerHTML = `<p style="color:red;">Senha Incorreta</p>`;
-    }
-}
+// SYSTEM BLOCK
 
-// Lock System - Função de Travamento
-function lockSystem() {
-    location.reload();
-}
-
-// Board Settings
-let inputOldPassword = document.getElementById("input-password"); // Modificando a senha de acesso ao sistema
-let inputNewPassword = document.getElementById("input-set-password");
-
-// Abrindo caixa de configurações
-const openSettings = () => {
-    boardTasks.style.display = "none";
-
-    const existsPassword = (localStorage.password) ? "block" : "none";
-    inputOldPassword.style.display = existsPassword;
-    console.log(inputOldPassword.style.display)
-    if (boardPassword.style.display != "none") { // BoardPassword in display block
-        console.log("Settings Acess -> NEGADO")
-    } else {
-        let status = (boardSettings.style.display == "block") ? "none" : "block";
-        boardSettings.style.display = status;   
-    }
-}
-
-// Função de Troca de senha de acesso
-const setPassword = () => {
-    if (inputOldPassword.value == password) {
-        console.log("New Password: " + inputNewPassword.value)
-        localStorage.password = inputNewPassword.value;
-        inputNewPassword.value = "";
-        inputOldPassword.value = "";
-        boardLine.style.display = "block";
-        boardSettings.style.display = "none";
-    } else {
-        boardSettings.innerHTML += `<p style="color:red;margin-top:10px;">Senha Incorreta</p>`;
-    }
-}
+// Elementos Html do sistema de blocos
+let inputTitle = document.getElementById("input-name-meta");
+let inputContent = document.getElementById("input-content-boxmeta");
 
 function openBoardAdd() {
     btAdd.style.display = "none";
@@ -76,48 +19,27 @@ function openBoardAdd() {
     boardLine.style.display = "none";
 }
 
-// Elementos Html do sistema de blocos
-let inputTitle = document.getElementById("input-name-meta");
-let inputContent = document.getElementById("input-content-boxmeta");
-let btnAddBox = document.querySelector("#btn-add-box");
-let btnNewDivision = document.querySelector("#btn-new-division");
-let btnAddDivision = document.querySelector("#btn-add-division");
+// Criando um novo bloco 
+function newBlock() {
+    if (!inputTitle.value) {
+        alert("Digite algo...")
+    }
+    else if (validadeIfExistNewMeta()) {
+        alert("Este titulo já está em uso");
+    }
+    else { 
+        boardAddLine.style.display = "none";
+        boardLine.style.display = "block";
+        btAdd.style.display = "block";
 
-
-btnAddDivision.addEventListener("click",()=>{
-    createBoxAndDivision("createDivision");
-});
-
-btnAddBox.addEventListener("click",()=>{
-    createBoxAndDivision("createBoxMeta");
-});
-
-function createBoxAndDivision(use) {
-    if (use == "createBoxMeta") {
-        if (!inputTitle.value) {
-            alert("Digite algo...")
-        }
-        else if (validadeIfExistNewMeta()) {
-            alert("Este titulo já está em uso");
-        }
-        else { 
-            boardAddLine.style.display = "none";
-            boardLine.style.display = "block";
-            btAdd.style.display = "block";
-    
-            let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
-            values.push({
-                title: inputTitle.value,
-                content: inputContent.value,
-            });
-            localStorage.setItem(localStorageLineKey, JSON.stringify(values));
-            showLineValues();
-            inputTitle.value = inputContent.value = ""; 
-        }
-    } else if (use == "createDivision") {
-        sectionNewDivision.style.display = "none";
-        sectionNewboxMeta.style.display = "block";
-        // btnNewDivision.style.display = "block";
+        let values = JSON.parse(localStorage.getItem(localStorageLineKey) || "[]");
+        values.unshift({
+            title: inputTitle.value,
+            content: inputContent.value,
+        });
+        localStorage.setItem(localStorageLineKey, JSON.stringify(values));
+        showLineValues();
+        inputTitle.value = inputContent.value = ""; 
     }
 }
 
@@ -167,12 +89,6 @@ function showLineValues() {
     }
 }
 
-function openSectionNewDivision() {
-    sectionNewDivision.style.display = "block";
-    sectionNewboxMeta.style.display = "none";
-    btnNewDivision.style.display = "none";
-}
-
 // Função para abertura de blocos
 function openBoxMeta(title,content) {
     boardAddLine.style.display = "block";
@@ -180,6 +96,8 @@ function openBoxMeta(title,content) {
 
     inputTitle.value = title;
     inputContent.value = content;
+    // SEGURANÇA: Salvamento de dados 
+    navigator.clipboard.writeText(content);
 }
 
 // Excluindo bloco
@@ -191,3 +109,4 @@ function removeLineItem(data) {
     showLineValues();
 }
 
+window.addEventListener("load",showLineValues);
