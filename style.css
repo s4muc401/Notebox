@@ -85,7 +85,7 @@ header nav button:active {
 
 #content-boxmeta {
     margin-top: 2vh;
-    width: 100%;
+    width: 75%;
     color: var(--cor-font-principal);
     font-size: 0.9rem;
     white-space: nowrap; 
