@@ -67,7 +67,7 @@ function showLineValues() {
         contentBoxMeta.innerHTML = `${values[iterator]['content']}`;
 
         const buttonRemoveBoxMeta = document.createElement('button');
-        buttonRemoveBoxMeta.innerHTML = "Apagar";
+        buttonRemoveBoxMeta.innerHTML = '<i class="fa-sharp fa-solid fa-trash"></i>';
         buttonRemoveBoxMeta.addEventListener('click',function(){
             removeLineItem(values[iterator]['title'])
         });

@@ -4,32 +4,31 @@
     box-sizing: border-box;
     box-shadow: 0 0 0 0;
     outline: 0;
-    font-family: sans-serif;
+    font-family: monospace;
 }
 
 body {
-    background-color: #000;
+    background-color: #fff;
 }
 
 :root {
-    --cor-primaria: #B76D68;
-    --cor-secundaria: #1B2432;
-    --cor-font-principal: #ccc;
-    --cor-activate: lightgray;
+    --cor-primaria: #e9d02f;
+    --cor-secundaria: #6494AA;
+    --cor-font-principal: #000;
+    --cor-activate: #ccc;
+    --cor-fundo-text: #fff;
 }
 
 header {
     padding: 2%;
     position: fixed;
     top: 0;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background-color: var(--cor-primaria);
     color: var(--cor-font-principal);
     font-size: 1.2em;
     width: 100%;
     display: flex;
     justify-content: center;
+    border-bottom: 1px solid var(--cor-font-principal);
 }
 
 header nav {
@@ -65,9 +64,10 @@ header nav button:active {
 #boxMeta {
     width: 100%;
     border: 1px solid var(--cor-font-principal);
-    background-color: var(--cor-secundaria);
+    background-color: var(--cor-primaria);
     margin-top: 1vh;
     color: #000;
+    box-shadow: 2px 2px var(--cor-primaria);
     border-radius: 5px;
     padding: 2%;
     height: 19vh;
@@ -75,8 +75,7 @@ header nav button:active {
 }
 
 #title-boxmeta {
-    color: var(--cor-primaria);
-    border-radius: 5px;
+    color: var(--cor-secundaria);   border-radius: 5px;
     font-size: 0.9rem;
     white-space: nowrap; 
     overflow: hidden; 
@@ -95,10 +94,12 @@ header nav button:active {
 
 #boxMeta button {
     padding: 2%;
-    width: 100%;
+    width: 10%;
     margin-top: 4vh;
-    border-radius: 5px;
     border: none;
+    font-size: 1.1rem;
+    float: right;
+    color: var(--cor-secundaria);
     background-color: var(--cor-primaria);
 }
 
@@ -108,13 +109,13 @@ section button:active {
 
 #board-add-line {
     width: 90%;
-    height: auto;
+    height: 83vh;
     position: absolute;
     top: 10vh;
     left: 5%;
     border-radius: 10px;
-    border: 1px solid var(--cor-secundaria);
-    background-color: var(--cor-secundaria);
+    border: 1px solid var(--cor-primaria);
+    box-shadow: 2px 2px var(--cor-font-principal);
     padding: 3%;
     display: none;
 }
@@ -124,8 +125,9 @@ section button:active {
     height: 2rem;
     color: var(--cor-font-principal);
     padding: 2%;
-    background-color: var(--cor-secundaria);
+    background-color: var(--cor-fundo-text);
     border: 1px solid var(--cor-primaria);
+    box-shadow: 2px 2px var(--cor-font-principal);
     margin-bottom: 5px;
     border-radius: 10px;
     font-size: 1.1em;
@@ -136,8 +138,9 @@ section button:active {
     height: 65vh;
     color: var(--cor-font-principal);
     padding: 2%;
-    background-color: var(--cor-secundaria);
+    background-color: var(--cor-fundo-text);
     border: 1px solid var(--cor-primaria);
+    box-shadow: 2px 2px var(--cor-font-principal);
     margin-bottom: 5px;
     border-radius: 10px;
     font-size: 0.9em;
@@ -167,7 +170,7 @@ section button:active {
     height: 3.3rem;
     border-radius: 10px;
     color: #fff;
-    background-color: var(--cor-primaria);
+    background-color: var(--cor-secundaria);
     border: none;
 }
 
